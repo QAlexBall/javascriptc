@@ -22,16 +22,24 @@ module.exports = {
     // shared: 'lodash',
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     // publicPath: '/',
   },
-  // optimization: {
-    // splitChunks: {
-      // chunks: 'all',
-    // },
-  // },
+  optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'verndors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
@@ -39,7 +47,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       // title: 'Output Management',
-      title: 'Development',
+      // title: 'Development',
+      title: 'Caching',
     }),
   ],
 
