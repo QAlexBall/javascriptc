@@ -9,17 +9,29 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
+    // index: {
+      // import: './src/index.js',
+      // dependOn: 'shared',
+    // },
     print: './src/print.js',
+    // another: './src/another-module.js',
+    // another: {
+      // import: './src/another-module.js',
+      // dependOn: 'shared',
+    // },
+    // shared: 'lodash',
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    publicPath: '/',
+    // publicPath: '/',
   },
-  optimization: {
-    runtimeChunk: 'single',
-  },
+  // optimization: {
+    // splitChunks: {
+      // chunks: 'all',
+    // },
+  // },
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
